@@ -1,0 +1,41 @@
+<% if flash[:notice] %>
+<p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+
+    <%= form_with model:@user, url: user_path(@user), local: true do |f| %>
+    <div class="box">
+    <table>
+        <tr>
+        <td class="profile"><h2>プロフィール</h2></td>
+        <td class="profile"><h2><%= link_to "アカウント", account_users_path, class:"account" %></h2></td>
+        </tr>
+        <tr>
+        <td></td>
+        <td>
+            <% if @user.image? %>
+            <%= image_tag @user.image.url, :size => '60x60' %>
+            <% else %>
+            <%= image_tag "/assets/default.jpg", :size => '60x60' %>
+            <% end %>
+        </td>
+        </tr>
+        <tr>
+        <td><%= f.label :アイコン画像 %></td>
+        <td><%= f.file_field :image %></td>
+        </tr>
+        <tr>
+        <td><%= f.label :ユーザー名 %></td>
+        <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %></td>
+        </tr>
+        <tr>
+        <td><%= f.label :自己紹介 %></td>
+        <td><%= f.text_area :profile, autofocus: true %></td>
+        </tr>
+        <tr>
+        <td><%= f.submit "更新" %></td>
+        </tr>
+    </table>
+    </div>
+    <% end %>
+

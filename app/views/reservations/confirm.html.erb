@@ -1,0 +1,52 @@
+<div class="row">
+  <table class="confirm-form">
+    <%= form_with model: @reservation, method: :post, url:reservations_path do |f| %>
+      <tr>
+        <td><h3>予約内容確認</h3></td>
+      </tr>
+      <tr>
+      <td><strong>￥<%= @reservation.price %>/日</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <strong><%= f.label :start_date ,"開始日" %></strong>
+          <p><%= @reservation.start_date.strftime("%Y年 %m月 %d日") %></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong><%= f.label :end_date ,"終了日" %></strong>
+          <p><%= @reservation.end_date.strftime("%Y年 %m月 %d日") %></p>
+        </td>
+      </tr>
+      <tr>
+        <td>使用日数:<%= (@reservation.end_date - @reservation.start_date).to_int %>日</td>
+      </tr>
+      <tr>
+        <td>人数:<%= @reservation.number_of_people %>人</td>
+      </tr>
+      <tr>
+        <td>
+          <strong><%= f.label :total_price ,"合計金額" %></strong>
+          <h3>￥<%= @reservation.total_price %></h3>
+        </td>
+      </tr>
+      <%= f.hidden_field :start_date, :value => @reservation.start_date %>
+      <%= f.hidden_field :end_date, :value => @reservation.end_date %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :room_id, :value => @reservation.room_id %>
+      <%= f.hidden_field :total_price, :value => @reservation.total_price %>
+      <%= f.hidden_field :number_of_people, :value => @reservation.number_of_people %>
+
+      <tr>
+        <td>
+          <%= f.submit "予約を確定", class:"form-submit",size:"200" %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= link_to 'ルーム詳細に戻る', room_path(@reservation.room_id) %></td>
+      <tr>
+      
+    <% end %> 
+  </table>
+</div>

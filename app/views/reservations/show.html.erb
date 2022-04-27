@@ -1,0 +1,25 @@
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<div class="row">
+  <div class="confirm-form">
+    <table class="reservation-table">
+      <tr>
+      <th>予約した部屋</th>
+      <td><%= @reservation.room.name %></td>
+      </tr>
+      <tr>
+      <th>開始日</th>
+      <td><%= @reservation.start_date.strftime("%Y年 %m月 %d日") %></td>
+      </tr>
+      <tr>
+      <th>終了日</th>
+      <td><%= @reservation.end_date.strftime("%Y年 %m月 %d日") %></td>
+      </tr>
+      <th>価格</th>
+      <td><%= @reservation.total_price %>円</td>
+      </tr>
+    </table>
+  </div>
+</div>

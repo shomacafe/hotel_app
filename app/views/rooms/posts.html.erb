@@ -1,0 +1,45 @@
+<% if flash[:notice] %>
+<p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<div class="container">
+  <h3>登録済みルーム一覧</h3>
+  <div class="row">
+  <% if flash[:notice] %>
+  
+  <% end %>
+      <table>
+        <thead>
+          <tr>
+            <th>ルーム画像</th>
+            <th>ルーム名</th>
+            <th>ルーム紹介</th>
+            <th>料金</th>
+            <th>作成日</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <% @rooms.each do |room| %>
+            <tr>
+              <td>
+                <% if room.picture.blank? %>
+                  <%=link_to image_tag("/assets/new_awazi.jpeg", :size => '300x200'),room_path(room) %>
+                <% else %>
+                  <%= link_to room_path(room) do %>
+                    <%= image_tag room.picture_url, :size => '300x200' %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td><%= room.name %></td>
+              <td><%= room.introduction %></td>
+              <td><%= room.price %></td>
+              <td><%= room.created_at.to_s(:datetime_jp) %></td>
+              <td>
+                <%= link_to "削除", room, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+</div>

@@ -1,0 +1,49 @@
+<% if flash[:notice] %>
+<p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<div class="container">
+  <h3>予約済みルーム一覧</h3>
+  <div class="row">
+  <table>
+    <thead>
+      <tr>
+        <th>ルーム画像</th>
+        <th>ルーム名</th>
+        <th>ルーム紹介</th>
+        <th>合計料金</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <!--<th>(user_id)</th>-->
+        <!--<th>(room_id)</th>-->
+        <th>予約確定日時</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td>              
+            <% if reservation.room.picture.blank? %>
+              <%= image_tag "/assets/new_awazi.jpeg", :size => '300x200' %>
+            <% else %>
+              <%= link_to room_path(reservation.room) do %>
+                <%= image_tag reservation.room.picture_url, :size => '300x200' %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= reservation.room.name %></td>
+          <td><%= reservation.room.introduction %></td>
+          <td>¥<%= reservation.total_price %></td>
+          <td><%= reservation.start_date.strftime("%Y年 %m月 %d日") %></td>
+          <td><%= reservation.end_date.strftime("%Y年 %m月 %d日") %></td>
+          <!--<td><%= reservation.user_id %></td>-->
+          <!--<td><%= reservation.room_id %></td>-->
+          <td><%= reservation.created_at.to_s(:datetime_jp) %></td>
+          <td><%= link_to "削除", reservation, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>
+
