@@ -1,0 +1,44 @@
+<div class="box">
+  <h3>ルーム情報の登録</h3>
+  <%= render "shared/error", obj: @room %>
+  <%= form_with model: @room do |f| %>
+    <table>
+      <tr>
+        <td>
+        <strong><%= f.label :name ,"ルーム名" %></strong><span class="must"><strong>必須</strong></span>
+        <p><%= f.text_field :name, size: "80" %></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong><%= f.label :introduction ,"ルーム紹介" %></strong><span class="must"><strong>必須</strong></span>
+          <p><%= f.text_area :introduction,size: "75x8" %></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong><%= f.label :price ,"料金" %></strong><span class="must"><strong>必須</strong></span>
+          <p><%= f.number_field :price, size: "80"  %></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong><%= f.label :adress ,"住所" %></strong><span class="must"><strong>必須</strong></span>
+          <p><%= f.text_field :adress, size: "80" %></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong><%= f.label :picture, "ルーム画像" %></strong><span class="must"><strong>必須</strong></span>
+          <p><%= f.file_field :picture %></p>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <%= f.submit "登録"%>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>

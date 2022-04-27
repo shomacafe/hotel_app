@@ -1,0 +1,30 @@
+<%= render "shared/error", obj: @reservation %>
+<div class="roomshow-container">
+  <% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+  <% end %>
+  <div class="row">
+    <table>
+      <td>
+        <% if @room.picture.blank? %>
+          <%= image_tag "/assets/new_awazi.jpeg", :size => '600x400' %>
+        <% else %>
+          <%= image_tag @room.picture_url, :size => '600x400' %>
+        <% end %>
+      </td>
+
+      <tr>
+        <td><%= @room.name %></td>
+      </tr>
+      <tr>
+        <td><%= @room.adress %></td>
+      </tr>
+      <tr>
+        <td><%= @room.introduction %></td>
+      </tr>
+
+    </table>
+
+    <%= render "reservations/new" %>
+  </div>
+</div>

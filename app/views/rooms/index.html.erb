@@ -1,0 +1,27 @@
+
+<div class="room">
+  <h3>ルーム一覧</h3>
+  <h4>検索結果：<%= @rooms.count %>件</h4>
+
+  <div class="room-container">
+      <% @rooms.each do |room| %>
+        <div class="room-box">
+        <%= link_to room_path(room), class: "room-area" do %>
+          </br>
+          <div class="room-image">
+            <% if room.picture.blank? %>
+              <%= image_tag "/assets/new_awazi.jpeg", :size => '280x160' %>
+            <% else %>
+              <%= image_tag room.picture_url, :size => '280x160',class:"room-image" %>
+            <% end %>
+          </div>
+          </br>
+          <div class="room_name"><%= room.name %></div>
+          <div class="address"><%= room.adress %></div>
+          <div class="price">￥<%= room.price %></div>
+        <% end %>
+        </div>
+      <% end %> 
+  </div>
+</div>
+  

@@ -1,0 +1,50 @@
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<div class="top-main">
+  <div class="container">
+    <div class="row form-fream">
+      <div class="form-area">
+        <h3>Prism Stoneでまだ体験したことのない旅をしよう</h3>
+          <%= form_with url: search_rooms_path, method: :get, local:true do |f| %>
+            <%= f.text_field :area, value: @area, :placeholder => "東京", class: "form-main" %>
+            <p><%= f.submit "探す", class: "form-submit" %></p>
+          <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel-area">
+    <h2>おすすめのエリア</h2>
+    <div class="row">
+      <div class="panel-item">
+        <%= form_with url: search_rooms_path, method: :get, local: true do |f| %>
+          <%= f.hidden_field :area, :value => "東京" %>
+          <%= image_submit_tag("東京.png", class: 'sub') %>
+        <% end %>
+      </div>
+      <div class="panel-item">
+        <%= form_with url: search_rooms_path, method: :get, local: true do |f| %>
+          <%= f.hidden_field :area, :value => "大阪" %>
+          <%= image_submit_tag("大阪.png", class: 'sub') %>
+        <% end %>
+      </div>
+      <div class="panel-item">
+        <%= form_with url: search_rooms_path, method: :get, local: true do |f| %>
+          <%= f.hidden_field :area, :value => "京都" %>
+          <%= image_submit_tag("京都.png", class: 'sub') %>
+        <% end %>
+      </div>
+      <div class="panel-item">
+        <%= form_with url: search_rooms_path, method: :get, local: true do |f| %>
+          <%= f.hidden_field :area, :value => "札幌" %>
+          <%= image_submit_tag("北海道.png", class: 'sub') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
